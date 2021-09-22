@@ -1,7 +1,7 @@
 import requests
 from coordinates_stuff import get_coordinates_by_city, split_coordinates_to_dict
-from utils.entity import WeatherEntity
-from utils.serializers import WeatherSerializer
+from entity import WeatherEntity
+from serializers import WeatherSerializer
 
 WEATHER_API_KEY = '6250b558-14b3-4617-a2ed-36231e94773c'
 WEATHER_MAIN_URL = 'https://api.weather.yandex.ru/v2/forecast'

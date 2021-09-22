@@ -1,6 +1,6 @@
-from utils.coordinates_stuff import get_coordinates_by_city, split_coordinates_to_dict
-from utils.entity import WeatherEntity
-from utils.weather import YandexWeatherConnector, WEATHER_API_KEY
+from coordinates_stuff import get_coordinates_by_city, split_coordinates_to_dict
+from entity import WeatherEntity
+from weather import YandexWeatherConnector, WEATHER_API_KEY
 
 
 CONDITION_DICT = {

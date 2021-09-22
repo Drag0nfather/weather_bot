@@ -1,8 +1,8 @@
 import telebot
 
-from utils.coordinates_stuff import get_coordinates_by_city, split_coordinates_to_dict
-from utils.text import create_output_message
-from utils.weather import YandexWeatherConnector, WEATHER_API_KEY
+from coordinates_stuff import get_coordinates_by_city, split_coordinates_to_dict
+from text import create_output_message
+from weather import YandexWeatherConnector, WEATHER_API_KEY
 
 TELEGRAM_TOKEN = '1635033657:AAFtVjbEF52oc33_lg-UqKYVEzXbON5dCNo'
 CHAT_ID ='278583648'
