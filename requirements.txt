@@ -1,4 +1,3 @@
--i https://pypi.python.org/simple/
 APScheduler==3.6.3
 backports.zoneinfo==0.2.1
 cachetools==4.2.2
