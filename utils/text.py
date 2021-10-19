@@ -1,6 +1,6 @@
 from coordinates_stuff import get_coordinates_by_city, split_coordinates_to_dict
 from entity import WeatherEntity
-from weather import YandexWeatherConnector, WEATHER_API_KEY
+from weather import YandexWeatherConnector, weather_api_key
 
 
 CONDITION_DICT = {
@@ -34,7 +34,7 @@ def create_output_message(entity: WeatherEntity) -> str:
 
 
 if __name__ == '__main__':
-    weather = YandexWeatherConnector(token=WEATHER_API_KEY)
+    weather = YandexWeatherConnector(token=weather_api_key)
     coordinates = get_coordinates_by_city('Малаховка')
     dict_coordinates = split_coordinates_to_dict(coordinates)
     entity = weather.get_weather_by_cors(dict_coordinates)

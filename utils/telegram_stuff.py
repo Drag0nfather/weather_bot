@@ -1,17 +1,21 @@
 import telebot
-
+import os
 from coordinates_stuff import get_coordinates_by_city, split_coordinates_to_dict
 from text import create_output_message
-from weather import YandexWeatherConnector, WEATHER_API_KEY
+from weather import YandexWeatherConnector, weather_api_key
+from dotenv import load_dotenv
 
-TELEGRAM_TOKEN = '1635033657:AAFtVjbEF52oc33_lg-UqKYVEzXbON5dCNo'
-CHAT_ID ='278583648'
-bot_client = telebot.TeleBot(token=TELEGRAM_TOKEN)
+
+load_dotenv()
+
+telegram_token = os.getenv('TELEGRAM_TOKEN')
+chat_id = os.getenv('CHAT_ID')
+bot_client = telebot.TeleBot(token=telegram_token)
 
 
 def send_message(message, bot_client):
     return bot_client.send_message(
-        chat_id=CHAT_ID,
+        chat_id=chat_id,
         text=message
     )
 
@@ -31,7 +35,7 @@ def get_text_message(message):
     try:
         coordinates = get_coordinates_by_city(client_city)
         dict_coordinates = split_coordinates_to_dict(coordinates)
-        weather = YandexWeatherConnector(token=WEATHER_API_KEY)
+        weather = YandexWeatherConnector(token=weather_api_key)
         weather_stuff = weather.get_weather_by_cors(dict_coordinates)
         output_message = create_output_message(weather_stuff)
         bot_client.send_message(message.from_user.id, output_message)

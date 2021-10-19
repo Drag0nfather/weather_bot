@@ -1,10 +1,15 @@
 import requests
+import os
+from dotenv import load_dotenv
 from coordinates_stuff import get_coordinates_by_city, split_coordinates_to_dict
 from entity import WeatherEntity
 from serializers import WeatherSerializer
 
-WEATHER_API_KEY = '6250b558-14b3-4617-a2ed-36231e94773c'
-WEATHER_MAIN_URL = 'https://api.weather.yandex.ru/v2/forecast'
+
+load_dotenv()
+
+weather_api_key = os.getenv('WEATHER_API_KEY')
+weather_main_url = os.getenv('WEATHER_MAIN_URL')
 
 
 class YandexWeatherConnector:
@@ -13,11 +18,11 @@ class YandexWeatherConnector:
     }
 
     def __init__(self, token: str):
-        self.headers['X-Yandex-API-Key'] = WEATHER_API_KEY
+        self.headers['X-Yandex-API-Key'] = weather_api_key
 
     def get_weather_by_cors(self, coordinates):
         request = requests.get(
-            WEATHER_MAIN_URL,
+            weather_main_url,
             headers=self.headers,
             params=coordinates
         )
@@ -28,7 +33,7 @@ class YandexWeatherConnector:
 
 
 if __name__ == '__main__':
-    weather = YandexWeatherConnector(token=WEATHER_API_KEY)
+    weather = YandexWeatherConnector(token=weather_api_key)
     coordinates = get_coordinates_by_city('Малаховка')
     dict_coordinates = split_coordinates_to_dict(coordinates)
     print(weather.get_weather_by_cors(dict_coordinates))

@@ -1,22 +1,18 @@
 from marshmallow import Schema, fields
 
 
-class DetailWeatherPartsForecastSerializer(Schema):
+class WeatherPartsForecastSerializer(Schema):
+    part_name = fields.String()
     temp_min = fields.Integer()
     temp_max = fields.Integer()
     feels_like = fields.Integer()
     condition = fields.String()
 
 
-class WeatherPartsForecastSerializer(Schema):
-    night = fields.Nested(DetailWeatherPartsForecastSerializer)
-    morning = fields.Nested(DetailWeatherPartsForecastSerializer)
-    day = fields.Nested(DetailWeatherPartsForecastSerializer)
-    evening = fields.Nested(DetailWeatherPartsForecastSerializer)
-
-
 class WeatherForecastSerializer(Schema):
-    parts = fields.Nested(WeatherPartsForecastSerializer)
+    sunrise = fields.String()
+    sunset = fields.String()
+    parts = fields.List(fields.Nested(WeatherPartsForecastSerializer))
 
 
 class WeatherFactSerializer(Schema):
@@ -27,4 +23,4 @@ class WeatherFactSerializer(Schema):
 
 class WeatherSerializer(Schema):
     fact = fields.Nested(WeatherFactSerializer)
-    forecasts = fields.List(fields.Nested(WeatherForecastSerializer))
+    forecast = fields.Nested(WeatherForecastSerializer)

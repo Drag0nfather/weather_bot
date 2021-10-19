@@ -1,7 +1,7 @@
 import json
 from typing import Dict
 
-f = open('./json_obj/cities_and_cors.json', )
+f = open('../json_obj/cities_and_cors.json', )
 cities_data = json.load(f)
 
 

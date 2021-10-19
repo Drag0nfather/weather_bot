@@ -1,35 +1,29 @@
 from dataclasses import dataclass
 
-
 @dataclass
-class DetailWeatherPartsForecastEntity:
+class WeatherPartsForecastEntity:
     temp_min: int
     temp_max: int
     feels_like: int
     condition: str
-
-
-@dataclass
-class WeatherPartsForecastEntity:
-    night: DetailWeatherPartsForecastEntity
-    morning: DetailWeatherPartsForecastEntity
-    day: DetailWeatherPartsForecastEntity
-    evening: DetailWeatherPartsForecastEntity
+    part_name: str
 
 
 @dataclass
 class WeatherForecastEntity:
+    sunrise: str
+    sunset: str
     parts: WeatherPartsForecastEntity
 
 
 @dataclass
 class WeatherFactEntity:
     temp: int
-    feels_like: int
     condition: str
+    feels_like: int
 
 
 @dataclass
 class WeatherEntity:
     fact: WeatherFactEntity
-    forecasts: WeatherForecastEntity
+    forecast: WeatherForecastEntity
