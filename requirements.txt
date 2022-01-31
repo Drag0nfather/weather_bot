@@ -4,6 +4,10 @@ certifi==2021.10.8
 charset-normalizer==2.0.7
 idna==3.3
 marshmallow==3.14.0
+<<<<<<< HEAD
+=======
+pkg_resources==0.0.0
+>>>>>>> 18cfbbeb9e513e45508dd46893a7605a9ad6c97e
 pyTelegramBotAPI==4.3.1
 python-dateutil==1.5
 python-dotenv==0.19.1
