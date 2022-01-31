@@ -3,7 +3,7 @@ import os
 from typing import Dict
 from pathlib import Path
 
-path_to_json_folder = os.path.join(Path(os.getcwd()).parent, 'json_obj')
+path_to_json_folder = os.path.join(Path(os.getcwd()), 'json_obj')
 f = open(os.path.join(path_to_json_folder, 'cities_and_cors.json'), )
 cities_data = json.load(f)
 

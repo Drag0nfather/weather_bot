@@ -21,7 +21,7 @@ load_dotenv()
 telegram_token = os.getenv('TELEGRAM_TOKEN')
 chat_id = os.getenv('CHAT_ID')
 bot_client = telebot.TeleBot(token=telegram_token)
-conn = sqlite3.connect('../db/weather.sqlite', check_same_thread=False)
+conn = sqlite3.connect('./db/weather.sqlite', check_same_thread=False)
 cursor = conn.cursor()
 
 
