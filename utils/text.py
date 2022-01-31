@@ -1,6 +1,4 @@
-from coordinates_stuff import get_coordinates_by_city, split_coordinates_to_dict
 from entity import WeatherEntity
-from weather import YandexWeatherConnector, weather_api_key
 
 
 CONDITION_DICT = {
@@ -27,15 +25,10 @@ CONDITION_DICT = {
 
 
 def create_output_message(entity: WeatherEntity) -> str:
+    temperature = entity.fact['temp']
+    sunset = entity.forecast['sunset']
+    sunrise = entity.forecast['sunrise']
     condition = entity.fact['condition']
     feels_like = entity.fact['feels_like']
-    string = f'За окном {CONDITION_DICT[condition]}, ощущается как {feels_like}'
+    string = f'За окном {CONDITION_DICT[condition]}, ощущается как {feels_like} \nТемпература: {temperature} \nРассвет: {sunrise} Закат: {sunset} '
     return string
-
-
-if __name__ == '__main__':
-    weather = YandexWeatherConnector(token=weather_api_key)
-    coordinates = get_coordinates_by_city('Малаховка')
-    dict_coordinates = split_coordinates_to_dict(coordinates)
-    entity = weather.get_weather_by_cors(dict_coordinates)
-    print(create_output_message(entity))

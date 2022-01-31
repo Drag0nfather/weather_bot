@@ -1,7 +1,10 @@
 import json
+import os
 from typing import Dict
+from pathlib import Path
 
-f = open('../json_obj/cities_and_cors.json', )
+path_to_json_folder = os.path.join(Path(os.getcwd()).parent, 'json_obj')
+f = open(os.path.join(path_to_json_folder, 'cities_and_cors.json'), )
 cities_data = json.load(f)
 
 
@@ -9,26 +12,24 @@ def get_coordinates_by_city(city: str) -> str:
     """
     Возвращает координаты города по названию
     """
-    # TODO сюда рейз ошибки, если город не найден, или неправильно введен
-    # TODO засунуть сюда проверку на маленькую первую букву, если да - то upperCase
     for city_data in cities_data:
-        if city_data['name'] == city:
+        if city_data['name'] == city.capitalize():
             return city_data['coordinates']
 
 
-def split_coordinates_to_dict(coordinates: str) -> Dict:
+def split_coordinates_to_dict(coordinates: str, flag=False) -> Dict:
     """
     Возвращает координаты в виде словаря
     """
-    lat, lon = coordinates.split(',')
-    coordinates_dict = {
-        'lat': lat,
-        'lon': lon
-    }
+    if flag == False:
+        lat, lon = coordinates.split(',')
+        coordinates_dict = {
+            'lat': lat,
+            'lon': lon
+        }
+    else:
+        coordinates_dict = {
+            'lat': coordinates[0],
+            'lon': coordinates[1]
+        }
     return coordinates_dict
-
-
-if __name__ == '__main__':
-    coordinates = get_coordinates_by_city('Лобня')
-    print(coordinates)
-    print(split_coordinates_to_dict(coordinates))
